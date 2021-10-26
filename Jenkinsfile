@@ -42,6 +42,7 @@ pipeline {
 	                      projectJsonPath: "project.json",
 	                      version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 	                      useOrchestrator: false,
+						  traceLoggingLevel: "None",
 						)
 	            }
 	        }
@@ -56,6 +57,7 @@ pipeline {
 	                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
 	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
 	                environments: 'INT',
+					traceLoggingLevel: "None",
 	                credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'c61a1f5a-8502-4371-b927-b4bfd62d220c']
 	                //credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
 	
