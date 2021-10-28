@@ -14,7 +14,7 @@ pipeline {
           steps {
              
               UiPathPack (
-			  outputPath: "C:\\jenkinsfolder\\${env.JOB_NAME}\\builds\\${env.BUILD_NUMBER}", projectJsonPath: "${env.WORKSPACE}", 
+			  outputPath: "C:\\jenkinsfolder\\${env.JOB_NAME}\\builds\\${env.BUILD_NUMBER}", projectJsonPath: "C:\\jenkinsfolder\\${env.JOB_NAME}\\builds\\${env.BUILD_NUMBER}", 
 			  version: [$class: 'ManualEntry', text: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 			   traceLevel: "None", 
 			  )
