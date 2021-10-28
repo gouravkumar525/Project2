@@ -14,7 +14,8 @@ pipeline {
           steps {
              
               UiPathPack (
-			  outputPath: "C:\\jenkinsfolder\\builds\\${env.JOB_NAME}\\${env.BUILD_NUMBER}", projectJsonPath: "C:\\jenkinsfolder\\builds\\${env.JOB_NAME}\\${env.BUILD_NUMBER}", 
+			  outputPath: "${WORKSPACE}\Output",
+			  projectJsonPath: "${WORKSPACE}", 
 			  version: [$class: 'ManualEntry', text: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 			   traceLevel: "None", 
 			  )
@@ -29,7 +30,7 @@ pipeline {
               }
               echo "Deploying ${BRANCH_NAME} to orchestrator"
 	                UiPathDeploy (
-	                packagePath: "C:\\jenkinsfolder\\builds\\${env.JOB_NAME}\\${env.BUILD_NUMBER}",
+	                packagePath: "${WORKSPACE}\Output",
 	                orchestratorAddress: "${UIPATH_ORCH_URL}",
 	                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
 	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
