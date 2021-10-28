@@ -14,8 +14,8 @@ pipeline {
           steps {
              
               UiPathPack (
-			  outputPath: "${WORKSPACE}\\Output",
-			  projectJsonPath: "${WORKSPACE}", 
+			  outputPath: "Output",
+			  projectJsonPath: "project.json", 
 			  version: [$class: 'ManualEntry', text: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 			   traceLevel: "None", 
 			  )
@@ -30,7 +30,7 @@ pipeline {
               }
               echo "Deploying ${BRANCH_NAME} to orchestrator"
 	                UiPathDeploy (
-	                packagePath: "${WORKSPACE}\\Output",
+	                packagePath: "Output",
 	                orchestratorAddress: "${UIPATH_ORCH_URL}",
 	                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
 	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
