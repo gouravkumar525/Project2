@@ -24,19 +24,19 @@ pipeline {
       }
       stage('Staging Environment') {
           steps {
-              mail bcc: 'gouravkumar525@gmail.com', body: " Hi, \n \n Please follow the link below to approve deployment into Staging. \n \n http://192.168.2.36:61000/job/UiPath-Deployment-Pipeline/ \n \n Regards, \n Ashraya" , cc: 'gouravkumar525@gmail.com', from: 'jenkins@uipath.com', replyTo: 'gouravkumar525@gmail.com', subject: 'Your Approval Required', to: env.APPROVERS
+              mail bcc: 'gouravkumar525@gmail.com', body: " Hi, \n \n Please follow the link below to approve deployment into Staging. \n \n http://192.168.2.36:61000/job/UiPath-Deployment-Pipeline/ \n \n Regards, \n Gourav" , cc: 'gouravkumar525@gmail.com', from: 'jenkins@uipath.com', replyTo: 'gouravkumar525@gmail.com', subject: 'Your Approval Required', to: env.APPROVERS
               timeout(time: 14, unit: 'DAYS') {
-                  input message: 'Please approve the deployment to staging', submitter:"ashraya,paladinsindia"
+                  input message: 'Please approve the deployment to staging', submitter:"Gourav"
               }
-              echo "Deploying ${BRANCH_NAME} to orchestrator"
+              echo "Deploying  to orchestrator"
 	                UiPathDeploy (
 	                packagePath: "${WORKSPACE}\\Output",
 	                orchestratorAddress: "${UIPATH_ORCH_URL}",
 	                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
 	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
 	                environments: 'INT',
-					 traceLevel: "None",
-					 entryPointPaths:"main.xaml",
+					traceLevel: "None",
+					entryPointPaths:"main.xaml",
 	                credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'c61a1f5a-8502-4371-b927-b4bfd62d220c']
 	                //credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
 	
@@ -46,11 +46,11 @@ pipeline {
       }
       stage('Production Environment') {
           steps {
-              mail bcc: '', body: " Hi, \n \n Please follow the link below to approve deployment into production. \n \n http://192.168.2.36:61000/job/UiPath-Deployment-Pipeline/ \n \n Regards, \n Ashraya", cc: '', from: 'jenkins@uipath.com', replyTo: '', subject: 'Your Approval Required', to: env.APPROVERS
+              mail bcc: '', body: " Hi, \n \n Please follow the link below to approve deployment into production. \n \n http://192.168.2.36:61000/job/UiPath-Deployment-Pipeline/ \n \n Regards, \n Gourav", cc: '', from: 'jenkins@uipath.com', replyTo: '', subject: 'Your Approval Required', to: env.APPROVERS
               timeout(time: 14, unit: 'DAYS') {
-                  input message: 'Please approve the deployment to Production', submitter:"ashraya"
+                  input message: 'Please approve the deployment to Production', submitter:"Gourav"
               }
-              echo "Deploying ${BRANCH_NAME} to orchestrator"
+              echo "Deploying  to orchestrator"
 	                UiPathDeploy (
 	                packagePath: "C:\\jenkinsfolder\\builds\\${env.JOB_NAME}\\${env.BUILD_NUMBER}",
 	                orchestratorAddress: "${UIPATH_ORCH_URL}",
